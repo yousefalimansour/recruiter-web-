@@ -21,11 +21,11 @@ function wavePath(midY: number, amp: number, period: number, phase: number, poin
 }
 
 const LINES = [
-  { color: "#ff5c9d", midY: 188, amp: 46, phase: 0.0, w: 1.5, o: 0.5 },
-  { color: "#8b5cf6", midY: 205, amp: 62, phase: 0.7, w: 1.2, o: 0.45 },
-  { color: "#4361ee", midY: 222, amp: 40, phase: 1.5, w: 1.0, o: 0.4 },
-  { color: "#ff5b6e", midY: 172, amp: 34, phase: 2.2, w: 0.9, o: 0.4 },
-  { color: "#d6409f", midY: 238, amp: 52, phase: 3.0, w: 1.1, o: 0.35 },
+  { color: "#b23a4e", midY: 188, amp: 46, phase: 0.0, w: 1.5, o: 0.5 },
+  { color: "#94243f", midY: 205, amp: 62, phase: 0.7, w: 1.2, o: 0.45 },
+  { color: "#6a1528", midY: 222, amp: 40, phase: 1.5, w: 1.0, o: 0.4 },
+  { color: "#8a8a92", midY: 172, amp: 34, phase: 2.2, w: 0.9, o: 0.4 },
+  { color: "#c85a6b", midY: 238, amp: 52, phase: 3.0, w: 1.1, o: 0.35 },
 ];
 
 export function WaveLines({ className = "", speed = 34 }: { className?: string; speed?: number }) {
@@ -39,7 +39,7 @@ export function WaveLines({ className = "", speed = 34 }: { className?: string; 
       viewBox={`0 0 ${VW} ${VH}`}
       preserveAspectRatio="none"
       className="h-full w-1/3 shrink-0"
-      style={{ filter: "drop-shadow(0 0 3px rgba(255,110,170,0.3))" }}
+      style={{ filter: "drop-shadow(0 0 3px rgba(148,36,63,0.28))" }}
       aria-hidden="true"
     >
       {paths.map((p, i) => (

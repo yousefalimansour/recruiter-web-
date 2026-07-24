@@ -3,10 +3,10 @@ import type { CSSProperties, ReactNode } from "react";
 type Glow = "pink" | "purple" | "blue" | "orange";
 
 const GLOW: Record<Glow, string> = {
-  pink: "rgba(255,92,157,0.38)",
-  purple: "rgba(139,92,246,0.36)",
-  blue: "rgba(67,97,238,0.34)",
-  orange: "rgba(255,140,66,0.34)",
+  pink: "rgba(178,58,78,0.4)",
+  purple: "rgba(148,36,63,0.4)",
+  blue: "rgba(110,110,122,0.3)",
+  orange: "rgba(200,90,107,0.35)",
 };
 
 /**

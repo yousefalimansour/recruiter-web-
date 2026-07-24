@@ -3,12 +3,12 @@ import { JapaneseLabel } from "./JapaneseLabel";
 import { WaveLines } from "./WaveLines";
 
 const STEPS = [
-  { icon: Search, name: "Discover", color: "#ff5c9d", desc: "Pulls fresh roles from public ATS APIs — Greenhouse, Lever, Ashby, RemoteOK — every 15 minutes." },
-  { icon: Gauge, name: "Score", color: "#8b5cf6", desc: "Gemini scores each job 0–100 against your profile and decides: apply, review, or reject." },
-  { icon: FileText, name: "Tailor", color: "#ff8c42", desc: "Reorders and rewrites your résumé for ATS keywords — never inventing a single fact." },
-  { icon: Send, name: "Apply", color: "#4cc9f0", desc: "Drives the browser to fill the form, upload the résumé, answer questions, and submit." },
-  { icon: Wrench, name: "Recover", color: "#ff5b6e", desc: "Fixes the usual snags — missing links, wrong format, cover letter required — on its own." },
-  { icon: Brain, name: "Learn", color: "#d6409f", desc: "Remembers every question answered, so the next application is faster and more autonomous." },
+  { icon: Search, name: "Discover", color: "#b23a4e", desc: "Pulls fresh roles from public ATS APIs — Greenhouse, Lever, Ashby, RemoteOK — every 15 minutes." },
+  { icon: Gauge, name: "Score", color: "#94243f", desc: "Gemini scores each job 0–100 against your profile and decides: apply, review, or reject." },
+  { icon: FileText, name: "Tailor", color: "#c85a6b", desc: "Reorders and rewrites your résumé for ATS keywords — never inventing a single fact." },
+  { icon: Send, name: "Apply", color: "#b23a4e", desc: "Drives the browser to fill the form, upload the résumé, answer questions, and submit." },
+  { icon: Wrench, name: "Recover", color: "#94243f", desc: "Fixes the usual snags — missing links, wrong format, cover letter required — on its own." },
+  { icon: Brain, name: "Learn", color: "#c85a6b", desc: "Remembers every question answered, so the next application is faster and more autonomous." },
 ];
 
 function IconBadge({ Icon, color }: { Icon: typeof Search; color: string }) {

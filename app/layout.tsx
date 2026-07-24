@@ -8,6 +8,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -70,10 +71,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${poppins.variable} ${notoSansJP.variable}`}
     >
       <body className="bg-bg text-text antialiased">
-        <AppShell>{children}</AppShell>
+        <ThemeProvider>
+          <AppShell>{children}</AppShell>
+        </ThemeProvider>
       </body>
     </html>
   );

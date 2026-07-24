@@ -88,31 +88,68 @@
 
 /* ============================================================
    SAKURA THEME — landing page only (scoped under .theme-sakura).
-   Dark cinematic Japanese-futuristic: navy/black-blue base, sakura
-   pink + neon magenta/purple/blue/coral/orange gradients, glass,
-   flowing waves, drifting petals. Gradients ARE intentional here
-   (distinct from the dashboard's flat, no-gradient system).
+   Dark cinematic, FLAT (no gradients). Two colours: BURGUNDY accent +
+   DARK GRAY surfaces. Real cherry-tree imagery carries the colour.
+   Tokens reference --sk-* vars that flip between light (:root) and
+   dark (.dark) so the theme toggle works; the accent stays burgundy.
    ============================================================ */
 @theme {
-  --color-sakura-bg: #0a0710;
-  --color-sakura-bg2: #0d0a1a;
-  --color-sakura-panel: #120c1e;
-  --color-sakura-pink: #ff5c9d;
-  --color-sakura-rose: #f56ba3;
-  --color-sakura-magenta: #d6409f;
-  --color-sakura-purple: #8b5cf6;
-  --color-sakura-violet: #7c3aed;
-  --color-sakura-blue: #4361ee;
-  --color-sakura-cyan: #4cc9f0;
-  --color-sakura-coral: #ff5b6e;
-  --color-sakura-orange: #ff8c42;
-  --color-sakura-cream: #f5eef4;
-  --color-sakura-muted: #b3a9c4;
-  --color-sakura-faint: #7c7391;
-  --color-sakura-line: rgba(255, 255, 255, 0.08);
+  --color-sakura-bg: var(--sk-bg);
+  --color-sakura-bg2: var(--sk-bg2);
+  --color-sakura-panel: var(--sk-panel);
+  --color-sakura-pink: var(--sk-accent);     /* primary burgundy accent */
+  --color-sakura-rose: var(--sk-accent-2);
+  --color-sakura-magenta: var(--sk-accent-deep);
+  --color-sakura-purple: var(--sk-gray);
+  --color-sakura-violet: var(--sk-accent-deep);
+  --color-sakura-blue: var(--sk-gray);
+  --color-sakura-cyan: var(--sk-gray-light);
+  --color-sakura-coral: var(--sk-accent-2);
+  --color-sakura-orange: var(--sk-accent-rose);
+  --color-sakura-cream: var(--sk-text);      /* primary text (flips) */
+  --color-sakura-muted: var(--sk-muted);
+  --color-sakura-faint: var(--sk-faint);
+  --color-sakura-line: var(--sk-line);
 
   --font-display: var(--font-poppins), "Poppins", sans-serif;
   --font-jp: var(--font-noto-jp), "Noto Sans JP", sans-serif;
+}
+
+/* Sakura colour values — light default (:root), dark override (.dark).
+   Only surfaces + text invert; the burgundy accent stays burgundy. */
+:root {
+  --sk-bg: #f3edef;
+  --sk-bg2: #eae2e5;
+  --sk-panel: #ffffff;
+  --sk-text: #1c1418;
+  --sk-muted: #6a5d63;
+  --sk-faint: #9a9096;
+  --sk-line: rgba(20, 12, 16, 0.1);
+  --sk-accent: #94243f;
+  --sk-accent-2: #b23a4e;
+  --sk-accent-deep: #6a1528;
+  --sk-accent-rose: #c85a6b;
+  --sk-gray: #6e6e78;
+  --sk-gray-light: #9a9aa2;
+  --sk-glass: rgba(255, 255, 255, 0.62);
+  --sk-glass-border: rgba(20, 12, 16, 0.1);
+}
+.dark {
+  --sk-bg: #0d0d0f;
+  --sk-bg2: #141416;
+  --sk-panel: #1a1a1d;
+  --sk-text: #f2ecef;
+  --sk-muted: #a6a6ae;
+  --sk-faint: #7e7e86;
+  --sk-line: rgba(255, 255, 255, 0.08);
+  --sk-accent: #b23a4e;
+  --sk-accent-2: #94243f;
+  --sk-accent-deep: #6a1528;
+  --sk-accent-rose: #c85a6b;
+  --sk-gray: #8a8a92;
+  --sk-gray-light: #a6a6ae;
+  --sk-glass: rgba(22, 18, 22, 0.5);
+  --sk-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @keyframes sakura-petal-fall {
@@ -231,32 +268,32 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--color-sakura-cream);
 }
-.theme-sakura ::selection { background: var(--color-sakura-pink); color: #14060d; }
+.theme-sakura ::selection { background: var(--color-sakura-pink); color: #f7eef1; }
 
 .font-jp { font-family: var(--font-jp); }
 .font-display { font-family: var(--font-display); }
 
 .sakura-glass {
-  background: rgba(20, 14, 30, 0.45);
+  background: var(--sk-glass);
   -webkit-backdrop-filter: blur(16px) saturate(125%);
   backdrop-filter: blur(16px) saturate(125%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--sk-glass-border);
 }
 /* flat accent text — a single solid colour, no gradient */
 .sakura-accent { color: var(--color-sakura-pink); }
 
 /* flat primary button — solid pink fill, dark legible text, flat hover swap */
 .sakura-btn {
-  background-color: var(--color-sakura-pink);
-  color: #160510;
+  background-color: #94243f;
+  color: #f7eef1;
   transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-.sakura-btn:hover { background-color: #ff7ab0; }
+.sakura-btn:hover { background-color: #b23a4e; }
 
-/* circular frame — flat 1px ring + a soft solid-colour shadow (not a gradient) */
+/* circular frame — flat 1px burgundy ring + a soft solid-colour shadow */
 .sakura-ring {
-  border: 1px solid rgba(255, 92, 157, 0.4);
-  box-shadow: 0 0 50px -18px rgba(255, 92, 157, 0.5);
+  border: 1px solid rgba(148, 36, 63, 0.45);
+  box-shadow: 0 0 50px -18px rgba(148, 36, 63, 0.5);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -266,3 +303,13 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+
+/* View Transitions — circular theme-swap reveal (see ThemeToggleButton).
+   The new snapshot is clipped/animated on top of the old. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 0; }
+::view-transition-new(root) { z-index: 1; }

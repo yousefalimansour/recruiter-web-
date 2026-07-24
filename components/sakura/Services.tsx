@@ -12,9 +12,9 @@ const CARDS: {
   glow: Glow;
   desc: string;
 }[] = [
-  { icon: Bot, title: "Autonomous Apply", tag: "Track A", color: "#ff5c9d", glow: "pink", desc: "The full pipeline running on portals that accept it — public ATS APIs first, deterministic form playbooks, and dry-run mode until you trust each site." },
-  { icon: Mail, title: "Cold-Email Outreach", tag: "Track B", color: "#4cc9f0", glow: "blue", desc: "A throttled, personalized campaign to a curated recruiter list — validated contacts, honest messages from your real experience, replies routed to Telegram." },
-  { icon: RefreshCw, title: "Recovers & Learns", tag: "Always on", color: "#ff8c42", glow: "orange", desc: "Auto-fixes common failures, answers screening questions from memory, and grows more autonomous with every single application it sends." },
+  { icon: Bot, title: "Autonomous Apply", tag: "Track A", color: "#b23a4e", glow: "pink", desc: "The full pipeline running on portals that accept it — public ATS APIs first, deterministic form playbooks, and dry-run mode until you trust each site." },
+  { icon: Mail, title: "Cold-Email Outreach", tag: "Track B", color: "#94243f", glow: "blue", desc: "A throttled, personalized campaign to a curated recruiter list — validated contacts, honest messages from your real experience, replies routed to Telegram." },
+  { icon: RefreshCw, title: "Recovers & Learns", tag: "Always on", color: "#c85a6b", glow: "orange", desc: "Auto-fixes common failures, answers screening questions from memory, and grows more autonomous with every single application it sends." },
 ];
 
 function CardIcon({ Icon, color }: { Icon: typeof Bot; color: string }) {
