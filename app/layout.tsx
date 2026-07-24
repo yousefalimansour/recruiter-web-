@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import {
+  Space_Grotesk,
+  Inter,
+  JetBrains_Mono,
+  Poppins,
+  Noto_Sans_JP,
+} from "next/font/google";
 import "./globals.css";
-import { Grain } from "@/components/grain";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
+import { AppShell } from "@/components/app-shell";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -23,6 +27,21 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+// Sakura (landing) fonts
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-jp",
   display: "swap",
 });
 
@@ -51,15 +70,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${poppins.variable} ${notoSansJP.variable}`}
     >
       <body className="bg-bg text-text antialiased">
-        <Grain />
-        <Nav />
-        <div className="relative z-10 flex min-h-screen flex-col pt-14">
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

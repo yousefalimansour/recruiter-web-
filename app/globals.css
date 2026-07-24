@@ -86,6 +86,62 @@
   --text-overline--font-weight: 500;
 }
 
+/* ============================================================
+   SAKURA THEME — landing page only (scoped under .theme-sakura).
+   Dark cinematic Japanese-futuristic: navy/black-blue base, sakura
+   pink + neon magenta/purple/blue/coral/orange gradients, glass,
+   flowing waves, drifting petals. Gradients ARE intentional here
+   (distinct from the dashboard's flat, no-gradient system).
+   ============================================================ */
+@theme {
+  --color-sakura-bg: #0a0710;
+  --color-sakura-bg2: #0d0a1a;
+  --color-sakura-panel: #120c1e;
+  --color-sakura-pink: #ff5c9d;
+  --color-sakura-rose: #f56ba3;
+  --color-sakura-magenta: #d6409f;
+  --color-sakura-purple: #8b5cf6;
+  --color-sakura-violet: #7c3aed;
+  --color-sakura-blue: #4361ee;
+  --color-sakura-cyan: #4cc9f0;
+  --color-sakura-coral: #ff5b6e;
+  --color-sakura-orange: #ff8c42;
+  --color-sakura-cream: #f5eef4;
+  --color-sakura-muted: #b3a9c4;
+  --color-sakura-faint: #7c7391;
+  --color-sakura-line: rgba(255, 255, 255, 0.08);
+
+  --font-display: var(--font-poppins), "Poppins", sans-serif;
+  --font-jp: var(--font-noto-jp), "Noto Sans JP", sans-serif;
+}
+
+@keyframes sakura-petal-fall {
+  0%   { transform: translate3d(0, -12vh, 0) rotate(0deg);   opacity: 0; }
+  12%  { opacity: var(--petal-opacity, 0.85); }
+  88%  { opacity: var(--petal-opacity, 0.85); }
+  100% { transform: translate3d(var(--petal-drift, 40px), 112vh, 0) rotate(360deg); opacity: 0; }
+}
+@keyframes sakura-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-18px) translateX(6px); }
+}
+@keyframes sakura-glow-pulse {
+  0%, 100% { opacity: 0.5;  transform: scale(1); }
+  50%      { opacity: 0.8;  transform: scale(1.04); }
+}
+@keyframes sakura-wave-drift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+@keyframes sakura-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes sakura-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* ------------------------------------------------------------
    Base styles
    ------------------------------------------------------------ */
@@ -161,4 +217,61 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   line-height: 1;
+}
+
+/* ------------------------------------------------------------
+   Sakura theme scope (landing) — base + utilities
+   ------------------------------------------------------------ */
+.theme-sakura {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-sakura-bg);
+  color: var(--color-sakura-cream);
+  font-family: var(--font-body);
+  overflow-x: clip;
+}
+.theme-sakura h1, .theme-sakura h2, .theme-sakura h3,
+.theme-sakura h4, .theme-sakura h5, .theme-sakura h6 {
+  font-family: var(--font-display);
+  color: var(--color-sakura-cream);
+}
+.theme-sakura ::selection { background: var(--color-sakura-pink); color: #14060d; }
+
+.font-jp { font-family: var(--font-jp); }
+.font-display { font-family: var(--font-display); }
+
+.sakura-glass {
+  background: rgba(20, 14, 30, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sakura-gradient-text {
+  background-image: linear-gradient(90deg, var(--color-sakura-pink), var(--color-sakura-orange) 45%, var(--color-sakura-purple));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sakura-gradient-shift 9s ease-in-out infinite;
+}
+.sakura-btn-gradient {
+  background-image: linear-gradient(90deg, #ff5c9d, #ff7a59 50%, #8b5cf6);
+  background-size: 180% auto;
+  transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.sakura-btn-gradient:hover { background-position: right center; }
+
+.sakura-ring {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+              0 0 60px -12px rgba(255, 92, 157, 0.5),
+              inset 0 0 40px -18px rgba(255, 140, 66, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-sakura *, .theme-sakura *::before, .theme-sakura *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }

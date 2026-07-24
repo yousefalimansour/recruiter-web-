@@ -1,68 +1,56 @@
 "use client";
 
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useReveal } from "./use-reveal";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-interface StaggerGroupProps {
-  children: ReactNode;
-  as?: ElementType;
-  className?: string;
-  /** seconds between each child (default 60ms per DESIGN.md) */
-  stagger?: number;
-}
-
 /**
  * StaggerGroup — container that reveals its <StaggerItem> children in sequence
- * on scroll into view. Reduced-motion safe.
+ * when scrolled into view. Static motion.div + useReveal for reliability.
  */
 export function StaggerGroup({
   children,
-  as = "div",
   className = "",
-  stagger = 0.06,
-}: StaggerGroupProps) {
-  const MotionTag = motion(as as ElementType);
+  stagger = 0.08,
+}: {
+  children: ReactNode;
+  className?: string;
+  stagger?: number;
+}) {
+  const { ref, shown } = useReveal();
   const container: Variants = {
     hidden: {},
-    visible: {
-      transition: { staggerChildren: stagger },
-    },
+    visible: { transition: { staggerChildren: stagger } },
   };
-
   return (
-    <MotionTag
+    <motion.div
+      ref={ref}
       className={className}
       variants={container}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      animate={shown ? "visible" : "hidden"}
     >
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }
 
-interface StaggerItemProps {
-  children: ReactNode;
-  as?: ElementType;
-  className?: string;
-  y?: number;
-}
-
 /**
- * StaggerItem — a single child of StaggerGroup. Fade-up + clip reveal.
+ * StaggerItem — a single child of StaggerGroup. Inherits the parent's
+ * hidden/visible state (framer variant propagation).
  */
 export function StaggerItem({
   children,
-  as = "div",
   className = "",
   y = 16,
-}: StaggerItemProps) {
+}: {
+  children: ReactNode;
+  className?: string;
+  y?: number;
+}) {
   const reduce = useReducedMotion();
-  const MotionTag = motion(as as ElementType);
-
   const variants: Variants = reduce
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
     : {
@@ -71,13 +59,12 @@ export function StaggerItem({
           opacity: 1,
           y: 0,
           clipPath: "inset(0 0 0% 0)",
-          transition: { duration: 0.64, ease: EASE },
+          transition: { duration: 0.6, ease: EASE },
         },
       };
-
   return (
-    <MotionTag className={className} variants={variants}>
+    <motion.div className={className} variants={variants}>
       {children}
-    </MotionTag>
+    </motion.div>
   );
 }

@@ -32,3 +32,6 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# design reference (input, not part of the app)
+/Landing page design.png

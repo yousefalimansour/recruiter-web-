@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  useReducedMotion,
-  useInView,
-  animate,
-} from "framer-motion";
+import { useEffect, useState } from "react";
+import { useReducedMotion, animate } from "framer-motion";
+import { useReveal } from "./use-reveal";
 
 interface CountUpProps {
-  /** target value to count to */
   to: number;
-  /** starting value (default 0) */
   from?: number;
-  /** duration in seconds (default 1.2) */
   duration?: number;
-  /** decimal places (default 0) */
   decimals?: number;
   prefix?: string;
   suffix?: string;
   className?: string;
-  /** format as a locale-grouped integer (e.g. 1,214) */
   grouped?: boolean;
 }
 
@@ -37,7 +29,7 @@ function format(value: number, decimals: number, grouped: boolean): string {
 
 /**
  * CountUp — animates a number from `from` to `to` when it enters the viewport.
- * Reduced-motion → shows the final value immediately, no animation.
+ * Uses useReveal so it can never get stuck at the start value.
  */
 export function CountUp({
   to,
@@ -50,14 +42,13 @@ export function CountUp({
   grouped = false,
 }: CountUpProps) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const { ref, shown } = useReveal<HTMLSpanElement>(0.3);
   const [display, setDisplay] = useState<string>(() =>
     format(reduce ? to : from, decimals, grouped)
   );
 
   useEffect(() => {
-    if (!inView) return;
+    if (!shown) return;
     if (reduce) {
       setDisplay(format(to, decimals, grouped));
       return;
@@ -68,7 +59,7 @@ export function CountUp({
       onUpdate: (latest) => setDisplay(format(latest, decimals, grouped)),
     });
     return () => controls.stop();
-  }, [inView, reduce, from, to, duration, decimals, grouped]);
+  }, [shown, reduce, from, to, duration, decimals, grouped]);
 
   return (
     <span ref={ref} className={className}>
