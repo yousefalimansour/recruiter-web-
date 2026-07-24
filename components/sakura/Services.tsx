@@ -1,6 +1,7 @@
 import { Bot, Mail, RefreshCw, ArrowRight } from "lucide-react";
 import { JapaneseLabel } from "./JapaneseLabel";
 import { GlassCard } from "./GlassCard";
+import RoundCarousel from "@/components/originkit/roundcarousel";
 
 type Glow = "pink" | "purple" | "blue" | "orange";
 
@@ -44,7 +45,27 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3" data-reveal-stagger>
+        <div className="mx-auto mt-14 h-[340px] w-full max-w-[620px] sm:h-[380px]" data-reveal>
+          <RoundCarousel
+            images={[
+              { src: "/sakura/card1.webp" },
+              { src: "/sakura/card2.webp" },
+              { src: "/sakura/card3.webp" },
+              { src: "/sakura/card4.webp" },
+              { src: "/sakura/card5.webp" },
+            ]}
+            speed={1}
+            imageWidth={230}
+            imageHeight={230}
+            spacing={2}
+            tilt={-8}
+            cornerRadius={18}
+            innerDim={2.5}
+            background="transparent"
+          />
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger>
           {CARDS.map((c) => (
             <GlassCard key={c.title} glow={c.glow} className="group flex h-full flex-col gap-5 p-8">
               <CardIcon Icon={c.icon} color={c.color} />

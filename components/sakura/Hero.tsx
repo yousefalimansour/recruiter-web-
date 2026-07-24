@@ -4,6 +4,7 @@ import { WaveLines } from "./WaveLines";
 import { SakuraPetals } from "./SakuraPetals";
 import { Tree } from "./Tree";
 import { GradientButton } from "./GradientButton";
+import { HeroHeadline } from "./HeroHeadline";
 
 /**
  * Hero — artistic asymmetry: headline left (2-3 lines), a real cherry-blossom
@@ -28,10 +29,7 @@ export function Hero() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="max-w-xl" data-reveal-stagger>
           <JapaneseLabel>自律型 AI 就職エージェント</JapaneseLabel>
-          <h1 className="mt-5 font-display text-[clamp(2.1rem,4.4vw,3.6rem)] font-bold leading-[1.08] text-sakura-cream">
-            An autonomous agent that applies{" "}
-            <span className="sakura-accent">while you sleep.</span>
-          </h1>
+          <HeroHeadline />
           <p lang="ja" className="mt-4 font-jp text-[clamp(1.1rem,2.4vw,1.55rem)] font-medium text-sakura-pink">
             眠っている間に、応募完了。
           </p>

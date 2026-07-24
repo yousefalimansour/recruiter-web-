@@ -125,10 +125,10 @@
   --sk-muted: #6a5d63;
   --sk-faint: #9a9096;
   --sk-line: rgba(20, 12, 16, 0.1);
-  --sk-accent: #94243f;
-  --sk-accent-2: #b23a4e;
-  --sk-accent-deep: #6a1528;
-  --sk-accent-rose: #c85a6b;
+  --sk-accent: #660033;
+  --sk-accent-2: #800040;
+  --sk-accent-deep: #4d0026;
+  --sk-accent-rose: #99476b;
   --sk-gray: #6e6e78;
   --sk-gray-light: #9a9aa2;
   --sk-glass: rgba(255, 255, 255, 0.62);
@@ -142,10 +142,10 @@
   --sk-muted: #a6a6ae;
   --sk-faint: #7e7e86;
   --sk-line: rgba(255, 255, 255, 0.08);
-  --sk-accent: #b23a4e;
-  --sk-accent-2: #94243f;
-  --sk-accent-deep: #6a1528;
-  --sk-accent-rose: #c85a6b;
+  --sk-accent: #a83a63;
+  --sk-accent-2: #660033;
+  --sk-accent-deep: #4d0026;
+  --sk-accent-rose: #c46b93;
   --sk-gray: #8a8a92;
   --sk-gray-light: #a6a6ae;
   --sk-glass: rgba(22, 18, 22, 0.5);
@@ -284,16 +284,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* flat primary button — solid pink fill, dark legible text, flat hover swap */
 .sakura-btn {
-  background-color: #94243f;
+  background-color: #660033;
   color: #f7eef1;
   transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-.sakura-btn:hover { background-color: #b23a4e; }
+.sakura-btn:hover { background-color: #800040; }
 
 /* circular frame — flat 1px burgundy ring + a soft solid-colour shadow */
 .sakura-ring {
-  border: 1px solid rgba(148, 36, 63, 0.45);
-  box-shadow: 0 0 50px -18px rgba(148, 36, 63, 0.5);
+  border: 1px solid rgba(102, 0, 51, 0.5);
+  box-shadow: 0 0 50px -18px rgba(102, 0, 51, 0.6);
 }
 
 @media (prefers-reduced-motion: reduce) {
