@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import { mockRecent } from "@/lib/mock";
+import { getRecentFromDb } from "@/lib/neon";
 import type { RecentResponse } from "@/lib/types";
 
 /**
- * GET /api/recent?limit=10 — proxies agent-core `/dashboard/recent`.
- * Mock fallback on any failure, with `x-data-source` header (live|mock).
+ * GET /api/recent?limit=10 — recent pipeline activity.
+ *
+ * Same resolution order as /api/overview: Neon direct, then agent-core, then
+ * mock. See lib/neon.ts for why reading Postgres straight from the Vercel
+ * runtime lets the dashboard run live with no backend deployed.
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,6 +20,19 @@ export async function GET(request: Request) {
     100
   );
 
+  // 1) Neon direct.
+  try {
+    const items = await getRecentFromDb(limit);
+    if (items) {
+      return NextResponse.json({ items } satisfies RecentResponse, {
+        headers: { "x-data-source": "live" },
+      });
+    }
+  } catch (err) {
+    console.error("[recent] Neon read failed:", err);
+  }
+
+  // 2) agent-core proxy.
   const base = process.env.AGENT_CORE_URL;
   if (base) {
     try {
@@ -34,6 +51,7 @@ export async function GET(request: Request) {
     }
   }
 
+  // 3) Demo data.
   const fallback: RecentResponse = { items: mockRecent.slice(0, limit) };
   return NextResponse.json(fallback, {
     headers: { "x-data-source": "mock" },
