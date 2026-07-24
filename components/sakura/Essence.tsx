@@ -11,10 +11,10 @@ const STEPS = [
   { icon: Brain, name: "Learn", color: "#c85a6b", desc: "Remembers every question answered, so the next application is faster and more autonomous." },
 ];
 
-function IconBadge({ Icon, color }: { Icon: typeof Search; color: string }) {
+function IconBadge({ Icon }: { Icon: typeof Search }) {
   return (
-    <span className="sakura-glass grid h-16 w-16 place-items-center rounded-2xl">
-      <Icon size={24} strokeWidth={1.6} style={{ color }} />
+    <span className="grid h-16 w-16 place-items-center rounded-2xl border border-[rgba(102,0,51,0.4)] bg-[rgba(102,0,51,0.12)] text-sakura-pink shadow-[0_0_34px_-14px_rgba(102,0,51,0.7)]">
+      <Icon size={24} strokeWidth={1.7} />
     </span>
   );
 }
@@ -28,7 +28,7 @@ export function Essence() {
       <WaveLines className="inset-x-0 top-0 h-full opacity-25" speed={54} />
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center" data-reveal>
-          <JapaneseLabel>私たちの仕組み</JapaneseLabel>
+          <JapaneseLabel>How it works</JapaneseLabel>
           <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-sakura-cream">
             The essence of the agent
           </h2>
@@ -44,7 +44,7 @@ export function Essence() {
         >
           {STEPS.map((s) => (
             <div key={s.name} className="flex flex-col items-center gap-4 text-center">
-              <IconBadge Icon={s.icon} color={s.color} />
+              <IconBadge Icon={s.icon} />
               <h3 className="font-display text-lg font-semibold text-sakura-cream">{s.name}</h3>
               <p className="max-w-xs text-sm leading-relaxed text-sakura-muted">{s.desc}</p>
             </div>

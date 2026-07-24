@@ -19,8 +19,8 @@ function Logo() {
       <svg viewBox="0 0 40 40" className="h-9 w-9 shrink-0" aria-hidden="true">
         <defs>
           <linearGradient id="sakura-logo-g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ff5c9d" />
-            <stop offset="1" stopColor="#8b5cf6" />
+            <stop offset="0" stopColor="#a83a63" />
+            <stop offset="1" stopColor="#660033" />
           </linearGradient>
         </defs>
         <rect x="8" y="8" width="24" height="24" rx="3" transform="rotate(45 20 20)" fill="none" stroke="url(#sakura-logo-g)" strokeWidth="2" />
@@ -30,8 +30,8 @@ function Logo() {
         <span className="block font-display text-[0.95rem] font-semibold text-sakura-cream">
           Recruiter Agent
         </span>
-        <span lang="ja" className="block font-jp text-[0.6rem] tracking-[0.22em] text-sakura-faint">
-          採用エージェント
+        <span className="block font-display text-[0.6rem] uppercase tracking-[0.22em] text-sakura-faint">
+          Autonomous · 24/7
         </span>
       </span>
     </Link>
@@ -72,9 +72,9 @@ export function SakuraNav() {
                 {l.label}
                 <span
                   className={[
-                    "absolute -bottom-1.5 left-0 h-px w-full origin-left bg-gradient-to-r from-sakura-pink to-sakura-purple transition-transform duration-300",
+                    "absolute -bottom-1.5 left-0 h-px w-full origin-left bg-gradient-to-r from-sakura-pink to-sakura-rose transition-transform duration-300",
                     l.active
-                      ? "scale-x-100 shadow-[0_0_8px_#ff5c9d]"
+                      ? "scale-x-100 shadow-[0_0_8px_rgba(168,58,99,0.85)]"
                       : "scale-x-0 group-hover:scale-x-100",
                   ].join(" ")}
                 />

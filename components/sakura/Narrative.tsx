@@ -12,7 +12,7 @@ export function Narrative() {
       <WaveLines className="inset-x-0 top-1/4 h-1/2 opacity-20" speed={62} />
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-5 sm:px-8 lg:grid-cols-2">
         <div className="order-2 lg:order-1" data-reveal>
-          <JapaneseLabel>エージェントの頭脳</JapaneseLabel>
+          <JapaneseLabel>Under the hood</JapaneseLabel>
           <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.12] text-sakura-cream">
             Seven specialized agents,
             <br />

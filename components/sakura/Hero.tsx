@@ -28,10 +28,10 @@ export function Hero() {
 
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="max-w-xl" data-reveal-stagger>
-          <JapaneseLabel>自律型 AI 就職エージェント</JapaneseLabel>
+          <JapaneseLabel>Autonomous AI job agent</JapaneseLabel>
           <HeroHeadline />
-          <p lang="ja" className="mt-4 font-jp text-[clamp(1.1rem,2.4vw,1.55rem)] font-medium text-sakura-pink">
-            眠っている間に、応募完了。
+          <p className="mt-4 text-[clamp(1.1rem,2.4vw,1.55rem)] font-medium text-sakura-pink">
+            Applications done while you sleep.
           </p>
           <p className="mt-6 max-w-md text-base leading-relaxed text-sakura-muted">
             It discovers fresh roles, scores each against your profile, tailors

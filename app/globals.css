@@ -112,7 +112,6 @@
   --color-sakura-line: var(--sk-line);
 
   --font-display: var(--font-poppins), "Poppins", sans-serif;
-  --font-jp: var(--font-noto-jp), "Noto Sans JP", sans-serif;
 }
 
 /* Sakura colour values — light default (:root), dark override (.dark).
@@ -270,7 +269,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .theme-sakura ::selection { background: var(--color-sakura-pink); color: #f7eef1; }
 
-.font-jp { font-family: var(--font-jp); }
 .font-display { font-family: var(--font-display); }
 
 .sakura-glass {

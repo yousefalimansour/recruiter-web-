@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Space_Grotesk,
-  Inter,
-  JetBrains_Mono,
-  Poppins,
-  Noto_Sans_JP,
-} from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
 import { ThemeProvider } from "@/components/theme/theme-provider";
@@ -39,13 +33,6 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-noto-jp",
-  display: "swap",
-});
-
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "Recruiter Agent";
 
 export const metadata: Metadata = {
@@ -72,7 +59,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${poppins.variable} ${notoSansJP.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
     >
       <body className="bg-bg text-text antialiased">
         <ThemeProvider>

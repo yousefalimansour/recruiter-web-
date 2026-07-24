@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 /**
- * JapaneseLabel — the small pink Noto-Sans-JP kicker that sits above section
- * titles (e.g. 私たちの強み). Intentional, elegant — not decoration.
+ * EyebrowLabel — the small uppercase burgundy kicker above section titles.
+ * (Kept this filename/export for import stability; content is English now.)
  */
 export function JapaneseLabel({
   children,
@@ -13,8 +13,7 @@ export function JapaneseLabel({
 }) {
   return (
     <span
-      lang="ja"
-      className={`font-jp text-sm font-medium tracking-[0.14em] text-sakura-pink ${className}`}
+      className={`font-display text-xs font-semibold uppercase tracking-[0.22em] text-sakura-pink ${className}`}
     >
       {children}
     </span>

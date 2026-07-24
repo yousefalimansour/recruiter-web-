@@ -37,16 +37,16 @@ export function SakuraFooter() {
             <svg viewBox="0 0 40 40" className="h-8 w-8" aria-hidden="true">
               <defs>
                 <linearGradient id="sakura-foot-g" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#ff5c9d" />
-                  <stop offset="1" stopColor="#8b5cf6" />
+                  <stop offset="0" stopColor="#a83a63" />
+                  <stop offset="1" stopColor="#660033" />
                 </linearGradient>
               </defs>
               <rect x="8" y="8" width="24" height="24" rx="3" transform="rotate(45 20 20)" fill="none" stroke="url(#sakura-foot-g)" strokeWidth="2" />
             </svg>
             <span className="leading-tight">
               <span className="block font-display font-semibold text-sakura-cream">Recruiter Agent</span>
-              <span lang="ja" className="block font-jp text-[0.6rem] tracking-[0.22em] text-sakura-faint">
-                採用エージェント
+              <span className="block font-display text-[0.6rem] uppercase tracking-[0.22em] text-sakura-faint">
+                Autonomous · 24/7
               </span>
             </span>
           </div>

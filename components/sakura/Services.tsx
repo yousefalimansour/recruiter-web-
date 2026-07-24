@@ -1,7 +1,7 @@
 import { Bot, Mail, RefreshCw, ArrowRight } from "lucide-react";
 import { JapaneseLabel } from "./JapaneseLabel";
 import { GlassCard } from "./GlassCard";
-import RoundCarousel from "@/components/originkit/roundcarousel";
+import { TracksReveal } from "./TracksReveal";
 
 type Glow = "pink" | "purple" | "blue" | "orange";
 
@@ -18,10 +18,10 @@ const CARDS: {
   { icon: RefreshCw, title: "Recovers & Learns", tag: "Always on", color: "#c85a6b", glow: "orange", desc: "Auto-fixes common failures, answers screening questions from memory, and grows more autonomous with every single application it sends." },
 ];
 
-function CardIcon({ Icon, color }: { Icon: typeof Bot; color: string }) {
+function CardIcon({ Icon }: { Icon: typeof Bot }) {
   return (
-    <span className="sakura-glass grid h-14 w-14 place-items-center rounded-xl">
-      <Icon size={22} strokeWidth={1.6} style={{ color }} />
+    <span className="grid h-14 w-14 place-items-center rounded-xl border border-[rgba(102,0,51,0.4)] bg-[rgba(102,0,51,0.12)] text-sakura-pink shadow-[0_0_30px_-14px_rgba(102,0,51,0.7)]">
+      <Icon size={22} strokeWidth={1.7} />
     </span>
   );
 }
@@ -35,7 +35,7 @@ export function Services() {
     <section id="tracks" className="relative overflow-hidden py-32 md:py-44">
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center" data-reveal>
-          <JapaneseLabel>サービス</JapaneseLabel>
+          <JapaneseLabel>What it does</JapaneseLabel>
           <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-sakura-cream">
             Two tracks, one engine
           </h2>
@@ -45,32 +45,19 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 h-[340px] w-full max-w-[620px] sm:h-[380px]" data-reveal>
-          <RoundCarousel
-            images={[
-              { src: "/sakura/card1.webp" },
-              { src: "/sakura/card2.webp" },
-              { src: "/sakura/card3.webp" },
-              { src: "/sakura/card4.webp" },
-              { src: "/sakura/card5.webp" },
-            ]}
-            speed={1}
-            imageWidth={230}
-            imageHeight={230}
-            spacing={2}
-            tilt={-8}
-            cornerRadius={18}
-            innerDim={2.5}
-            background="transparent"
-          />
+        <div
+          className="mx-auto mt-10 h-[300px] w-full max-w-3xl sm:h-[340px]"
+          data-reveal
+        >
+          <TracksReveal />
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger>
           {CARDS.map((c) => (
             <GlassCard key={c.title} glow={c.glow} className="group flex h-full flex-col gap-5 p-8">
-              <CardIcon Icon={c.icon} color={c.color} />
+              <CardIcon Icon={c.icon} />
               <div className="flex flex-col gap-2">
-                <span className="font-jp text-xs font-medium tracking-[0.14em] text-sakura-pink">
+                <span className="font-display text-xs font-semibold uppercase tracking-[0.16em] text-sakura-pink">
                   {c.tag}
                 </span>
                 <h3 className="font-display text-xl font-semibold text-sakura-cream">{c.title}</h3>
