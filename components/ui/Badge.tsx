@@ -15,7 +15,7 @@ interface BadgeProps {
 
 const VARIANT: Record<NonNullable<BadgeProps["variant"]>, string> = {
   neutral: "border border-border text-text-secondary",
-  primary: "border border-primary bg-primary text-text-bright",
+  primary: "border border-primary bg-primary text-on-primary",
   attention: "border border-accent text-accent",
   muted: "border border-dashed border-border-strong text-text-muted",
 };

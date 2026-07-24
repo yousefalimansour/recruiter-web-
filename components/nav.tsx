@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggleButton } from "@/components/theme/theme-toggle";
 
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "Recruiter Agent";
 
@@ -31,30 +32,33 @@ export function Nav() {
           {SITE_NAME}
         </Link>
 
-        <ul className="flex items-center gap-1 sm:gap-2">
-          {LINKS.map((link) => {
-            const active =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={[
-                    "block rounded-md px-3 py-1.5 font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-colors",
-                    active
-                      ? "text-text-bright"
-                      : "text-text-muted hover:text-text",
-                  ].join(" ")}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <ul className="flex items-center gap-1 sm:gap-2">
+            {LINKS.map((link) => {
+              const active =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={[
+                      "block rounded-md px-3 py-1.5 font-mono text-[0.75rem] uppercase tracking-[0.18em] transition-colors",
+                      active
+                        ? "text-text-bright"
+                        : "text-text-muted hover:text-text",
+                    ].join(" ")}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <ThemeToggleButton />
+        </div>
       </nav>
     </header>
   );

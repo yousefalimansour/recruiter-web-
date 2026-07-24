@@ -58,7 +58,7 @@ export default function DashboardPage() {
               demo data · backend offline
             </span>
           ) : (
-            <span className="inline-flex items-center gap-2 rounded-sm border border-primary bg-primary px-2.5 py-1 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-text-bright">
+            <span className="inline-flex items-center gap-2 rounded-sm border border-primary bg-primary px-2.5 py-1 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-on-primary">
               live
             </span>
           )}

@@ -32,6 +32,7 @@
   --color-primary: #94243f;
   --color-primary-pressed: #6a1528;
   --color-accent: #b23a4e;
+  --color-on-primary: #f7eef1; /* text on a burgundy fill — always light, both themes */
 
   /* type */
   --font-heading: var(--font-space-grotesk), "Space Grotesk", sans-serif;
@@ -149,6 +150,29 @@
   --sk-gray-light: #a6a6ae;
   --sk-glass: rgba(22, 18, 22, 0.5);
   --sk-glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ------------------------------------------------------------------
+   Instrument theme (dashboard + non-landing chrome) — LIGHT override.
+   The @theme base tokens are the DARK defaults; these apply only in light
+   mode (when next-themes removes `.dark`). `:root:not(.dark)` outranks the
+   @theme-generated `:root`, so dark stays the default and light flips cleanly.
+   The burgundy accent stays burgundy; only surfaces + text invert.
+   ------------------------------------------------------------------ */
+:root:not(.dark) {
+  --color-bg: #f4f1f2;
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-elevated: #f1ecee;
+  --color-border: #e6e0e3;
+  --color-border-strong: #d2ccd0;
+  --color-text-muted: #7a747c;
+  --color-text-secondary: #554f58;
+  --color-text: #2b2530;
+  --color-text-bright: #171319;
+  --color-primary: #94243f;
+  --color-primary-pressed: #6a1528;
+  --color-accent: #8f2038;
 }
 
 @keyframes sakura-petal-fall {

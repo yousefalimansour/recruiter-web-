@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono, Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
 import { ThemeProvider } from "@/components/theme/theme-provider";
@@ -65,6 +66,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AppShell>{children}</AppShell>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
