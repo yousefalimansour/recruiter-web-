@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "name": "Recruiter Agent — Burgundy/Gray Flat",
+    "description": "Shared design identity for the AI Recruitment Agent landing page + dashboard. Dark, premium, editorial, engineered. Burgundy + gray only. STRICTLY no gradients (flat fills).",
+    "source_references": ["user brief: burgundy + gray, no gradients, dark premium editorial engineered"],
+    "created_at": "2026-07-24"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "monochromatic (burgundy) + neutral gray",
+      "primary": { "hex": "#94243F", "role": "primary burgundy — CTAs, active data, key accents" },
+      "secondary": { "hex": "#6A1528", "role": "deep burgundy — pressed states, filled bars, section markers" },
+      "accent": { "hex": "#B23A4E", "role": "bright wine — hover, focus rings, highlights" },
+      "neutral": {
+        "scale": ["#0D0D0F","#141416","#1A1A1D","#222226","#2C2C31","#3A3A40","#7E7E86","#A6A6AE","#DCDCE0","#F4F4F6"],
+        "usage": "bg → surface → card → elevated → border → muted-border → text-muted → text-secondary → text → text-bright"
+      },
+      "semantic": {
+        "success": "#94243F (active/positive expressed as burgundy — NO green)",
+        "warning": "#B23A4E (attention expressed as bright wine)",
+        "error": "#7E7E86 on dashed border (negative expressed as muted gray + iconography, NO red)",
+        "info": "#A6A6AE (neutral gray)"
+      },
+      "surface": { "background": "#0D0D0F", "card": "#1A1A1D", "elevated": "#222226" },
+      "contrast_strategy": "high contrast text on near-black; depth via flat surface steps + 1px solid borders, NOT shadows or gradients"
+    },
+    "typography": {
+      "type_scale": {
+        "display":   { "size": "clamp(3rem, 7vw, 6.5rem)", "weight": 600, "line_height": 0.98, "tracking": "-0.03em" },
+        "heading_1": { "size": "clamp(2.25rem, 4.5vw, 3.75rem)", "weight": 600, "line_height": 1.03, "tracking": "-0.02em" },
+        "heading_2": { "size": "clamp(1.75rem, 3vw, 2.5rem)", "weight": 600, "line_height": 1.08, "tracking": "-0.015em" },
+        "heading_3": { "size": "1.375rem", "weight": 600, "line_height": 1.2, "tracking": "-0.01em" },
+        "body":      { "size": "1.0625rem", "weight": 400, "line_height": 1.6, "tracking": "0" },
+        "body_small":{ "size": "0.9375rem", "weight": 400, "line_height": 1.55, "tracking": "0" },
+        "caption":   { "size": "0.8125rem", "weight": 400, "line_height": 1.4, "tracking": "0" },
+        "overline":  { "size": "0.75rem", "weight": 500, "line_height": 1, "tracking": "0.18em (UPPERCASE, mono)" }
+      },
+      "font_families": {
+        "heading": "\"Space Grotesk\", sans-serif",
+        "body": "\"Inter\", sans-serif",
+        "mono": "\"JetBrains Mono\", monospace"
+      },
+      "font_style_notes": "Grotesk display for editorial-engineered headlines; Inter for readable body; JetBrains Mono for overlines, data labels, metrics, and technical chrome (reinforces the 'engineered instrument' feel)."
+    },
+    "spacing": {
+      "base_unit": "4px",
+      "scale": ["4px","8px","12px","16px","24px","32px","48px","64px","96px","128px","160px"],
+      "content_density": "comfortable on landing, compact-precise on dashboard",
+      "section_rhythm": "large 96–160px vertical rhythm on landing; tight 16–32px grid on dashboard"
+    },
+    "layout": {
+      "grid_system": "12-col fluid",
+      "max_content_width": "1200px (landing), 1440px (dashboard)",
+      "columns": 12,
+      "gutter": "24px",
+      "breakpoints": { "sm": "640px", "md": "768px", "lg": "1024px", "xl": "1280px" },
+      "alignment_tendency": "asymmetric editorial on landing; strict grid on dashboard"
+    },
+    "shape": {
+      "border_radius": { "small": "4px", "medium": "8px", "large": "12px", "pill": "999px" },
+      "border_usage": "subtle 1px solid #2C2C31 everywhere; the primary depth + structure device",
+      "divider_style": "1px solid #2C2C31, occasionally a 1px burgundy rule (#6A1528) as a section marker"
+    },
+    "elevation": {
+      "shadow_style": "none — flat. Depth = solid surface color steps + 1px borders. (NO soft shadows, NO gradients.)",
+      "levels": {
+        "low": "background #0D0D0F → surface #141416",
+        "medium": "card #1A1A1D + 1px #2C2C31 border",
+        "high": "elevated #222226 + 1px #3A3A40 border"
+      },
+      "depth_cues": "color intensity + solid borders + overlap"
+    },
+    "iconography": {
+      "style": "line, geometric, 1.5px stroke",
+      "stroke_weight": "1.5px",
+      "size_scale": ["16px","20px","24px"],
+      "preferred_set": "lucide"
+    },
+    "motion": {
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "duration_scale": { "micro": "120ms", "normal": "320ms", "macro": "640ms" },
+      "entrance_pattern": "fade-up 16px + clip reveal, staggered",
+      "exit_pattern": "fade-out fast (micro)",
+      "philosophy": "precise, engineered, restrained-cinematic; motion confirms structure, never decorates"
+    },
+    "components": {
+      "button_style": "primary = flat burgundy #94243F fill, #F4F4F6 text, 8px radius, no shadow; hover → #B23A4E (flat color swap, NO gradient). secondary = transparent + 1px #2C2C31 border. ghost = text + burgundy underline on hover.",
+      "input_style": "flat #141416 fill, 1px #2C2C31 border, focus → 1px #B23A4E border (no glow/gradient)",
+      "card_style": "flat #1A1A1D, 1px #2C2C31 border, 12px radius, no shadow; hover → border #3A3A40",
+      "navigation_pattern": "thin fixed top bar, mono wordmark left, links right, flat #0D0D0F with 1px bottom border",
+      "modal_style": "flat #1A1A1D panel, 1px border, backdrop = solid #0D0D0F at 80% opacity (flat, no blur)",
+      "list_style": "row dividers 1px #2C2C31, mono metadata, generous row height",
+      "component_notes": "Everything flat-filled. The only 'accent' is burgundy. Borders + type scale + mono labels carry the engineered look."
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": ["engineered", "premium", "focused", "confident", "editorial"],
+      "visual_metaphor": "an instrument panel for an autonomous machine — a control room in oxblood and graphite",
+      "era_influence": "modern Swiss/editorial + terminal/instrumentation",
+      "genre": "dark premium product / data instrument",
+      "personality_traits": ["meticulous", "quietly powerful", "no-nonsense", "expensive"],
+      "adjectives": ["flat", "sharp", "structured", "dark", "oxblood"]
+    },
+    "visual_language": {
+      "complexity": "minimal-to-moderate",
+      "ornamentation": "none — structure IS the ornament (borders, grids, mono labels)",
+      "whitespace_usage": "generous on landing, dense-precise on dashboard",
+      "visual_weight_distribution": "heavy type + one burgundy focal per view; rest neutral",
+      "focal_strategy": "single hero element on landing; single primary metric per dashboard cluster",
+      "contrast_level": "high (bright text on near-black; burgundy pops against gray)",
+      "texture_usage": "optional very-subtle static grain overlay (~3% opacity) for premium paper feel — flat noise, NOT a gradient"
+    },
+    "composition": {
+      "hierarchy_method": "scale contrast + burgundy color weight + spatial isolation",
+      "balance_type": "asymmetric (landing) / modular grid (dashboard)",
+      "flow_direction": "vertical scroll narrative (landing); scan-grid (dashboard)",
+      "grouping_strategy": "bordered cards + section rules",
+      "negative_space_role": "primary — lets the oxblood accents and headlines breathe"
+    },
+    "imagery": {
+      "photo_treatment": "none / duotone burgundy-gray if ever used",
+      "illustration_style": "wireframe / line-geometry (matches the 3D hero)",
+      "graphic_elements": "1px rules, grid ticks, mono coordinates, NO gradients, NO blobs",
+      "pattern_usage": "fine dot-grid or crosshair ticks at low opacity",
+      "image_shape": "hard rectangles, 4–12px radius"
+    },
+    "interaction_feel": {
+      "feedback_style": "immediate, crisp; flat color swaps + 1px border shifts",
+      "hover_behavior": "burgundy border/underline reveal; magnetic pull on primary CTA only",
+      "transition_personality": "snappy with a smooth-out tail",
+      "loading_style": "mono skeleton rows + a thin burgundy progress rule",
+      "microinteraction_density": "restrained — a few high-quality moments, not everywhere"
+    },
+    "brand_voice_in_ui": {
+      "tone": "direct, technical, quietly confident",
+      "formality": "professional, minimal",
+      "cta_style": "direct imperative ('Deploy the agent', 'View the pipeline')",
+      "empty_state_approach": "mono, matter-of-fact ('No applications yet — the agent runs on a schedule.')",
+      "error_tone": "plain, non-alarming, actionable"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "moderate (landing hero) / subtle-accent (dashboard)",
+      "performance_tier": "heavy (hero WebGL) with lightweight fallback",
+      "fallback_strategy": "prefers-reduced-motion or low-end (hardwareConcurrency<=4) → static burgundy wireframe still-frame, no WebGL loop",
+      "primary_technology": "WebGL / three.js (@react-three/fiber) + framer-motion + IntersectionObserver"
+    },
+    "background_effects": {
+      "type": "noise-field",
+      "description": "Static, very-low-opacity monochrome grain overlay for premium texture. NOT animated, NOT a gradient.",
+      "technology": "tiled PNG/SVG noise or a one-time canvas draw",
+      "params": { "color_palette": ["#0D0D0F","#141416"], "speed": "0 (static)", "density": "fine", "opacity": "0.03", "blend_mode": "normal" }
+    },
+    "particle_systems": {
+      "enabled": true,
+      "type": "connected-nodes",
+      "description": "Hero: a slowly drifting constellation of gray points connected by thin burgundy lines — 'a network of opportunities the agent traverses'. Flat-shaded, no glow.",
+      "technology": "three.js Points + LineSegments (r3f)",
+      "params": { "count": "180", "shape": "point", "size_range": "1–2px", "movement_pattern": "slow drift + parallax to scroll", "color_behavior": "gray points, burgundy links (flat)", "interaction": "subtle mouse-parallax", "spawn_area": "hero viewport volume" }
+    },
+    "3d_elements": {
+      "enabled": true,
+      "type": "abstract-geometry",
+      "description": "Central slowly-rotating low-poly/wireframe form (icosahedron network) in burgundy wireframe over the node field; scroll dollies the camera through/past it.",
+      "technology": "three.js via @react-three/fiber + drei",
+      "params": {
+        "renderer": "WebGL, antialias, transparent bg (#0D0D0F behind)",
+        "lighting": "minimal — flat/emissive burgundy wireframe, one dim key light; no dramatic speculars",
+        "camera": "PerspectiveCamera, scroll-scrubbed dolly + gentle rotation",
+        "materials": "MeshBasicMaterial wireframe (#94243F) + PointsMaterial (#A6A6AE) — FLAT, no gradient maps",
+        "geometry": "IcosahedronGeometry (detail 1–2), instanced points",
+        "post_processing": "none by default (keep flat/crisp). Optional very-subtle bloom OFF unless requested.",
+        "interaction_model": "scroll-driven camera; light pointer parallax; no orbit controls on landing"
+      }
+    },
+    "shader_effects": { "enabled": false, "type": "none", "description": "Avoid — shaders tend toward gradients; keep flat.", "technology": "n/a", "params": {} },
+    "scroll_effects": {
+      "parallax": { "enabled": true, "layers": "3", "depth_range": "subtle", "speed_curve": "linear-ish, gentle" },
+      "scroll_triggered_animations": { "enabled": true, "trigger_points": "section enter (0.2 threshold)", "animation_type": "fade-up + clip-reveal + number counters", "scrub_behavior": "hero camera = scrubbed; section reveals = triggered-once" },
+      "scroll_morphing": { "enabled": false, "description": "n/a" }
+    },
+    "text_effects": {
+      "type": "split-letter-animate",
+      "description": "Hero headline reveals by word with a stagger + clip mask. NO gradient text fill.",
+      "technology": "framer-motion",
+      "params": { "split_strategy": "by-word", "animation_per_unit": "fade-up + clip", "stagger": "40ms", "effect_style": "editorial reveal" }
+    },
+    "cursor_effects": { "enabled": true, "type": "magnetic-buttons", "description": "Primary CTA only: subtle magnetic pull toward cursor.", "params": { "shape": "n/a", "size": "n/a", "blend_mode": "normal", "trail": "none", "interaction_zone": "primary CTA bounds + 40px" } },
+    "image_effects": { "type": "none", "description": "No photos in v1.", "technology": "n/a", "params": {} },
+    "glassmorphism_neumorphism": { "enabled": false, "style": "none", "params": {} },
+    "canvas_drawings": { "enabled": false, "type": "none", "description": "Dashboard charts use flat SVG bars, not canvas.", "technology": "n/a", "params": {} },
+    "svg_animations": { "enabled": true, "type": "path-draw", "description": "Thin burgundy connector lines in the 'how it works' agent-chain draw in on scroll; dashboard sparklines draw in.", "params": { "animation_method": "stroke-dashoffset", "path_morphing": "none", "stroke_animation": "dashoffset length→0", "filter_effects": "none" } },
+    "composite_notes": "HARD RULE: zero gradients anywhere (no linear/radial/conic gradients, no gradient text, no gradient borders, no mesh gradients, no bloom-glow by default). All fills are flat solid colors from the burgundy+gray tokens. Depth is achieved ONLY via flat surface color steps and 1px solid borders. Charts are flat burgundy-monochrome bars/lines on gray. The 3D hero is flat-shaded wireframe + points. A single static ~3% grain overlay is the only permitted texture. Landing = immersive/editorial; dashboard = precise instrument. Both share the exact same tokens."
+  }
+}
