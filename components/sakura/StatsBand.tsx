@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 import { getOverview } from "@/lib/api";
 import type { DashboardOverview } from "@/lib/types";
 import { CountUp } from "@/components/motion/CountUp";
-import { Reveal } from "@/components/motion/Reveal";
 import { JapaneseLabel } from "./JapaneseLabel";
 import { GlassCard } from "./GlassCard";
 
 /**
- * StatsBand — live numbers pulled from the backend via /api/overview, in glass
- * tiles with animated gradient figures. Falls back to demo data (with a note)
- * when agent-core is offline.
+ * StatsBand — live numbers from /api/overview in flat glass tiles (flat pink
+ * figures, no gradient). Falls back to demo data with a note when offline.
  */
 export function StatsBand() {
   const [data, setData] = useState<DashboardOverview | null>(null);
@@ -36,19 +34,19 @@ export function StatsBand() {
   ];
 
   return (
-    <section id="stats" className="relative overflow-hidden py-24">
+    <section id="stats" className="relative overflow-hidden py-28 md:py-36">
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3" data-reveal>
           <JapaneseLabel>ライブ・パイプライン</JapaneseLabel>
           <span className="font-display text-[0.7rem] uppercase tracking-[0.2em] text-sakura-faint">
             {isMock ? "demo data · backend offline" : "live"}
           </span>
-        </Reveal>
+        </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-3" data-reveal-stagger>
           {stats.map((s) => (
             <GlassCard key={s.label} glow={s.glow} className="p-8">
-              <p className="sakura-gradient-text font-display text-5xl font-bold leading-none tabular-nums">
+              <p className="font-display text-5xl font-bold leading-none tabular-nums text-sakura-pink">
                 {data ? (
                   <CountUp to={s.value} decimals={s.decimals ?? 0} suffix={s.suffix ?? ""} grouped />
                 ) : (

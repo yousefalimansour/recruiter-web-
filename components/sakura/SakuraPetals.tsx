@@ -44,9 +44,7 @@ export function SakuraPetals({ count = 16 }: { count?: number }) {
           width: p.size,
           height: p.size * 0.72,
           borderRadius: "100% 0 100% 0",
-          background: p.warm
-            ? "radial-gradient(circle at 30% 30%, #ffd7b0, #ff7a9d)"
-            : "radial-gradient(circle at 30% 30%, #ffd1e6, #ff5c9d)",
+          backgroundColor: p.warm ? "#ff9db0" : "#ff6aa6",
           filter: "blur(0.2px)",
           animation: `sakura-petal-fall ${p.dur}s linear ${p.delay}s infinite`,
           ["--petal-drift" as string]: `${p.drift}px`,

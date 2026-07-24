@@ -1,20 +1,17 @@
 import { JapaneseLabel } from "./JapaneseLabel";
 import { WaveLines } from "./WaveLines";
-import { SakuraScene } from "./SakuraScene";
 import { GradientButton } from "./GradientButton";
-import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * Narrative — the "Inspired by Nature" circular composition. A glowing porthole
- * (the coded scene, masked to a circle) beside the story of the 7-agent
- * orchestration.
+ * Narrative — the story of the 7-agent orchestration beside a real cherry tree
+ * framed in a circular porthole (flat ring), with scroll parallax/scale.
  */
 export function Narrative() {
   return (
-    <section id="narrative" className="relative overflow-hidden bg-sakura-bg2 py-28">
-      <WaveLines className="inset-x-0 top-1/4 h-1/2 opacity-30" speed={62} />
-      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
-        <Reveal className="order-2 lg:order-1">
+    <section id="narrative" className="relative overflow-hidden bg-sakura-bg2 py-32 md:py-44">
+      <WaveLines className="inset-x-0 top-1/4 h-1/2 opacity-20" speed={62} />
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-5 sm:px-8 lg:grid-cols-2">
+        <div className="order-2 lg:order-1" data-reveal>
           <JapaneseLabel>エージェントの頭脳</JapaneseLabel>
           <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.12] text-sakura-cream">
             Seven specialized agents,
@@ -33,24 +30,18 @@ export function Narrative() {
               Open the dashboard
             </GradientButton>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={0.1} className="order-1 lg:order-2">
-          <div className="relative mx-auto aspect-square w-full max-w-[440px]">
-            <div className="sakura-ring absolute inset-0 rounded-full" />
-            <div className="absolute inset-[7px] overflow-hidden rounded-full">
-              <SakuraScene className="h-full w-full scale-[1.15]" />
-            </div>
-            {/* orbiting accent */}
-            <span
-              className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2"
-              style={{ animation: "sakura-spin-slow 24s linear infinite" }}
+        <div className="order-1 lg:order-2" data-reveal>
+          <div data-parallax="0.06" className="relative mx-auto aspect-square w-full max-w-[440px]">
+            <div
               aria-hidden="true"
-            >
-              <span className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-sakura-pink shadow-[0_0_16px_#ff5c9d]" />
-            </span>
+              className="absolute inset-[8px] rounded-full bg-sakura-bg bg-cover bg-[center_28%] bg-no-repeat"
+              style={{ backgroundImage: "url(/sakura/tree3.webp)" }}
+            />
+            <div className="sakura-ring pointer-events-none absolute inset-0 rounded-full" />
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

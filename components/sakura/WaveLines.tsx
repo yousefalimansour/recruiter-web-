@@ -1,11 +1,11 @@
 "use client";
 
-import { useId, useMemo } from "react";
+import { useMemo } from "react";
 
 /**
- * WaveLines — the signature flowing neon topographic ribbons. Thin gradient
- * sine-wave strokes (blue→purple→pink→orange) drifting slowly, seamlessly
- * looped via 3 identical tiles. Atmospheric only — sits behind content.
+ * WaveLines — flowing topographic ribbons. Thin FLAT single-colour strokes (no
+ * gradients), drifting slowly and looping seamlessly via 3 identical tiles.
+ * Atmospheric only — behind content.
  */
 const VW = 480;
 const VH = 400;
@@ -21,21 +21,14 @@ function wavePath(midY: number, amp: number, period: number, phase: number, poin
 }
 
 const LINES = [
-  { g: 1, midY: 188, amp: 46, phase: 0.0, w: 1.5, o: 0.6 },
-  { g: 2, midY: 205, amp: 62, phase: 0.7, w: 1.2, o: 0.5 },
-  { g: 3, midY: 222, amp: 40, phase: 1.5, w: 1.0, o: 0.45 },
-  { g: 1, midY: 172, amp: 34, phase: 2.2, w: 0.9, o: 0.4 },
-  { g: 2, midY: 238, amp: 52, phase: 3.0, w: 1.1, o: 0.4 },
+  { color: "#ff5c9d", midY: 188, amp: 46, phase: 0.0, w: 1.5, o: 0.5 },
+  { color: "#8b5cf6", midY: 205, amp: 62, phase: 0.7, w: 1.2, o: 0.45 },
+  { color: "#4361ee", midY: 222, amp: 40, phase: 1.5, w: 1.0, o: 0.4 },
+  { color: "#ff5b6e", midY: 172, amp: 34, phase: 2.2, w: 0.9, o: 0.4 },
+  { color: "#d6409f", midY: 238, amp: 52, phase: 3.0, w: 1.1, o: 0.35 },
 ];
 
-export function WaveLines({
-  className = "",
-  speed = 34,
-}: {
-  className?: string;
-  speed?: number;
-}) {
-  const uid = useId().replace(/:/g, "");
+export function WaveLines({ className = "", speed = 34 }: { className?: string; speed?: number }) {
   const paths = useMemo(
     () => LINES.map((l) => ({ ...l, d: wavePath(l.midY, l.amp, 240, l.phase) })),
     []
@@ -46,33 +39,15 @@ export function WaveLines({
       viewBox={`0 0 ${VW} ${VH}`}
       preserveAspectRatio="none"
       className="h-full w-1/3 shrink-0"
-      style={{ filter: "drop-shadow(0 0 3px rgba(255,110,170,0.35))" }}
+      style={{ filter: "drop-shadow(0 0 3px rgba(255,110,170,0.3))" }}
       aria-hidden="true"
     >
-      <defs>
-        <linearGradient id={`wg1-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#4361ee" />
-          <stop offset="0.45" stopColor="#8b5cf6" />
-          <stop offset="0.75" stopColor="#ff5c9d" />
-          <stop offset="1" stopColor="#ff8c42" />
-        </linearGradient>
-        <linearGradient id={`wg2-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#ff5c9d" />
-          <stop offset="0.5" stopColor="#d6409f" />
-          <stop offset="1" stopColor="#4cc9f0" />
-        </linearGradient>
-        <linearGradient id={`wg3-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#ff5b6e" />
-          <stop offset="0.5" stopColor="#8b5cf6" />
-          <stop offset="1" stopColor="#4361ee" />
-        </linearGradient>
-      </defs>
       {paths.map((p, i) => (
         <path
           key={i}
           d={p.d}
           fill="none"
-          stroke={`url(#wg${p.g}-${uid})`}
+          stroke={p.color}
           strokeWidth={p.w}
           opacity={p.o}
           strokeLinecap="round"
