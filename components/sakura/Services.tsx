@@ -32,7 +32,7 @@ function CardIcon({ Icon }: { Icon: typeof Bot }) {
  */
 export function Services() {
   return (
-    <section id="tracks" className="relative overflow-hidden py-32 md:py-44">
+    <section id="tracks" className="relative overflow-hidden pb-16 pt-24 md:pb-20 md:pt-32">
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center" data-reveal>
           <JapaneseLabel>What it does</JapaneseLabel>
@@ -46,13 +46,13 @@ export function Services() {
         </div>
 
         <div
-          className="mx-auto mt-10 h-[300px] w-full max-w-3xl sm:h-[340px]"
+          className="mx-auto mt-8 h-[210px] w-full max-w-3xl sm:h-[240px] lg:h-[260px]"
           data-reveal
         >
           <TracksReveal />
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger>
+        <div className="mt-10 grid gap-6 md:grid-cols-3" data-reveal-stagger>
           {CARDS.map((c) => (
             <GlassCard key={c.title} glow={c.glow} className="group flex h-full flex-col gap-5 p-8">
               <CardIcon Icon={c.icon} />

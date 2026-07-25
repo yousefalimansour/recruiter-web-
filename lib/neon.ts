@@ -109,12 +109,16 @@ export async function getRecentFromDb(limit: number): Promise<RecentItem[] | nul
 
   const apps = (await sql`
     SELECT
-      COALESCE(c.name, 'Unknown')                          AS company,
+      COALESCE(c.name, j.company_name, 'Unknown')          AS company,
       j.title                                              AS role,
       a.ats_type                                           AS ats,
       a.status                                             AS status,
       j.match_score                                        AS match_score,
-      COALESCE(a.submitted_at, a.updated_at, a.created_at) AS time
+      COALESCE(a.submitted_at, a.updated_at, a.created_at) AS time,
+      j.location, j.remote, j.country, j.seniority, j.url,
+      j.salary_min, j.salary_max, j.salary_currency, j.tech_stack, j.posted_at,
+      (SELECT d.reasons FROM ai_decisions d
+        WHERE d.job_id = j.id ORDER BY d.created_at DESC LIMIT 1) AS reasons
     FROM applications a
     JOIN jobs j ON j.id = a.job_id
     LEFT JOIN companies c ON c.id = j.company_id
@@ -126,15 +130,24 @@ export async function getRecentFromDb(limit: number): Promise<RecentItem[] | nul
 
   const jobs = (await sql`
     SELECT
-      COALESCE(c.name, split_part(regexp_replace(j.url, '^https?://(www\\.)?', ''), '.', 1), 'Unknown') AS company,
+      COALESCE(
+        c.name,
+        j.company_name,
+        initcap(split_part(regexp_replace(j.url, '^https?://(www\\.)?', ''), '.', 1)),
+        'Unknown'
+      )              AS company,
       j.title        AS role,
       j.source       AS ats,
       j.status       AS status,
       j.match_score  AS match_score,
-      j.discovered_at AS time
+      j.discovered_at AS time,
+      j.location, j.remote, j.country, j.seniority, j.url,
+      j.salary_min, j.salary_max, j.salary_currency, j.tech_stack, j.posted_at,
+      (SELECT d.reasons FROM ai_decisions d
+        WHERE d.job_id = j.id ORDER BY d.created_at DESC LIMIT 1) AS reasons
     FROM jobs j
     LEFT JOIN companies c ON c.id = j.company_id
-    ORDER BY j.discovered_at DESC
+    ORDER BY j.priority_rank DESC, j.discovered_at DESC
     LIMIT ${limit}
   `) as Record<string, unknown>[];
 
@@ -143,14 +156,65 @@ export async function getRecentFromDb(limit: number): Promise<RecentItem[] | nul
 
 /** Map a DB row to the wire shape, normalising status into ApplicationStatus. */
 function toItem(r: Record<string, unknown>): RecentItem {
+  const rationale = parseReasons(r.reasons);
   return {
     company: String(r.company ?? "Unknown"),
     role: String(r.role ?? "Untitled role"),
     ats: String(r.ats ?? "—"),
     status: normalizeStatus(String(r.status ?? "")),
     match_score: r.match_score === null || r.match_score === undefined ? null : Number(r.match_score),
-    time: r.time instanceof Date ? r.time.toISOString() : String(r.time ?? new Date().toISOString()),
+    time: toIso(r.time) ?? new Date().toISOString(),
+    location: (r.location as string) ?? null,
+    remote: r.remote === null || r.remote === undefined ? null : Boolean(r.remote),
+    country: (r.country as string) ?? null,
+    seniority: (r.seniority as string) ?? null,
+    url: (r.url as string) ?? null,
+    salary_min: r.salary_min === null || r.salary_min === undefined ? null : Number(r.salary_min),
+    salary_max: r.salary_max === null || r.salary_max === undefined ? null : Number(r.salary_max),
+    salary_currency: (r.salary_currency as string) ?? null,
+    tech_stack: Array.isArray(r.tech_stack) ? (r.tech_stack as string[]) : null,
+    posted_at: toIso(r.posted_at),
+    reasons: rationale.reasons,
+    required_skills: rationale.required,
+    missing_skills: rationale.missing,
   };
+}
+
+function toIso(v: unknown): string | null {
+  if (!v) return null;
+  if (v instanceof Date) return v.toISOString();
+  return String(v);
+}
+
+/**
+ * `ai_decisions.reasons` is JSONB written by the scorer. It may be a plain list
+ * of reason strings or an object also carrying the skill hints, so accept both.
+ */
+function parseReasons(raw: unknown): {
+  reasons: string[] | null;
+  required: string[] | null;
+  missing: string[] | null;
+} {
+  const empty = { reasons: null, required: null, missing: null };
+  if (!raw) return empty;
+
+  let value: unknown = raw;
+  if (typeof raw === "string") {
+    try {
+      value = JSON.parse(raw);
+    } catch {
+      return { reasons: [raw], required: null, missing: null };
+    }
+  }
+
+  if (Array.isArray(value)) return { reasons: value.map(String), required: null, missing: null };
+
+  if (typeof value === "object") {
+    const o = value as Record<string, unknown>;
+    const list = (k: string) => (Array.isArray(o[k]) ? (o[k] as unknown[]).map(String) : null);
+    return { reasons: list("reasons"), required: list("required_skills"), missing: list("missing_skills") };
+  }
+  return empty;
 }
 
 /** Job/application statuses -> the five the UI renders. */

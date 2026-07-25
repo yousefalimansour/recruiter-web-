@@ -15,7 +15,7 @@ export function TracksReveal() {
   useEffect(() => {
     const upd = () => {
       const w = window.innerWidth;
-      setFs(w < 380 ? 30 : w < 480 ? 36 : w < 640 ? 42 : w < 1024 ? 50 : 58);
+      setFs(w < 380 ? 26 : w < 480 ? 31 : w < 640 ? 36 : w < 1024 ? 44 : 50);
     };
     upd();
     window.addEventListener("resize", upd);
@@ -28,11 +28,12 @@ export function TracksReveal() {
       backgroundColor="transparent"
       textColor="var(--sk-text)"
       dimColor="var(--sk-faint)"
-      imageWidth={280}
-      imageHeight={340}
+      imageWidth={260}
+      imageHeight={310}
       rounded={18}
-      rowGap={14}
-      offsetX={210}
+      rowGap={8}
+      offsetX={200}
+      style={{ padding: 4 }}
       items={{
         itemCount: 3,
         item1: { text: "Auto-Apply", image: { src: "/sakura/card1.webp" } },

@@ -26,8 +26,11 @@ export function StatsBand() {
     };
   }, []);
 
-  const d = data?.daily;
-  const replyRate = data ? Math.round(data.reply_rate * 1000) / 10 : 11.1;
+  // Show one coherent set of numbers: either everything from the live pipeline
+  // or everything from the curated sample. Mixing them (a real 7 next to a
+  // fabricated 63) would misrepresent the pipeline.
+  const live = data !== null;
+  const f = data?.funnel;
 
   const tiles: {
     icon: typeof Search;
@@ -37,17 +40,32 @@ export function StatsBand() {
     trend: string;
     suffix?: string;
     decimals?: number;
-  }[] = [
-    { icon: Search, value: d?.jobs_found || 214, label: "Jobs found", sub: "every 24h", trend: "+9%" },
-    { icon: Filter, value: d?.qualified || 63, label: "Qualified", sub: "match ≥ threshold", trend: "+4%" },
-    { icon: Send, value: d?.applied || 41, label: "Applications sent", sub: "auto-submitted", trend: "+6%" },
-    { icon: Reply, value: replyRate || 11.1, label: "Reply rate", sub: "cold outreach", trend: "+1.2pt", suffix: "%", decimals: 1 },
-  ];
+  }[] = live
+    ? [
+        { icon: Search, value: f?.discovered ?? 0, label: "Jobs discovered", sub: "across all sources", trend: "live" },
+        { icon: Filter, value: f?.qualified ?? 0, label: "Qualified", sub: "match ≥ threshold", trend: "live" },
+        { icon: Send, value: f?.applied ?? 0, label: "Applications sent", sub: "auto-submitted", trend: "live" },
+        {
+          icon: Reply,
+          value: Math.round((data?.reply_rate ?? 0) * 1000) / 10,
+          label: "Reply rate",
+          sub: "cold outreach",
+          trend: "live",
+          suffix: "%",
+          decimals: 1,
+        },
+      ]
+    : [
+        { icon: Search, value: 214, label: "Jobs discovered", sub: "across all sources", trend: "+9%" },
+        { icon: Filter, value: 63, label: "Qualified", sub: "match ≥ threshold", trend: "+4%" },
+        { icon: Send, value: 41, label: "Applications sent", sub: "auto-submitted", trend: "+6%" },
+        { icon: Reply, value: 11.1, label: "Reply rate", sub: "cold outreach", trend: "+1.2pt", suffix: "%", decimals: 1 },
+      ];
 
   return (
-    <section id="stats" className="relative px-5 py-28 sm:px-8 md:py-36">
+    <section id="stats" className="relative px-5 pb-24 pt-14 sm:px-8 md:pb-32 md:pt-20">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex flex-col items-center gap-4 text-center" data-reveal>
+        <div className="mb-10 flex flex-col items-center gap-4 text-center" data-reveal>
           <JapaneseLabel>Live pipeline</JapaneseLabel>
           <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold text-sakura-cream">
             Numbers that move while you sleep
@@ -93,7 +111,7 @@ export function StatsBand() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-sakura-pink" />
             </span>
             <span className="font-display text-[0.68rem] uppercase tracking-[0.18em] text-sakura-faint">
-              Sample metrics from the live pipeline
+              {live ? "Live from the agent pipeline" : "Sample metrics · pipeline offline"}
             </span>
           </div>
         </div>
